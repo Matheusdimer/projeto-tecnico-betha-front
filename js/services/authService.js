@@ -6,4 +6,12 @@ angular.module("manutencaoApp").service("authAPI", function($http, config) {
             }
         });
     };
+
+    this.getCurrentUser = (token) => {
+        return $http.get(config.apiUrl + "/funcionarios/current", {
+            headers: {
+                "Authorization": token
+            }
+        });
+    }
 });
