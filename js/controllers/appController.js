@@ -2,7 +2,7 @@ angular.module("manutencaoApp").controller("appController", function($scope, $lo
     $scope.token = localStorage.getItem("session_token");
 
     $scope.showUserInfo = false;
-    $scope.showMenu = false;
+    $scope.showMenu = true;
 
     $scope.logout = () => {
         localStorage.clear();
