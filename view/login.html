@@ -1,5 +1,10 @@
 <main class="login-page">
-    <form>
-        <h2>Sistema de Manutenção</h2>
-    </form>
+    <div>
+        <img src="assets/betha-logo.png" alt="Betha Logo">
+        <form>
+            <input type="text" id="username" placeholder="Usuário" ng-model="user.username">
+            <input type="password" id="password" placeholder="Senha" ng-model="user.senha">
+            <button type="submit" ng-disabled="!user.username || !user.senha" ng-click="submitLogin(user)">Login</button>
+        </form>
+    </div>
 </main>

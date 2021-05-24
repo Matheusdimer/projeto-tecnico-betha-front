@@ -6,6 +6,11 @@ angular.module("manutencaoApp").config(function($routeProvider, $locationProvide
         controller: "loginController"
     });
 
+    $routeProvider.when("/app", {
+        templateUrl: "view/app.html",
+        controller: "appController"
+    })
+
     $routeProvider.otherwise({
         redirectTo: "/login"
     });
