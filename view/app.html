@@ -25,11 +25,19 @@
         </div>
     </header>
 
-    <main>
-        <nav ng-class="{'hide': !showMenu}">
-            <div class="selected">
-                <p>Clientes</p>
+    <div class="main-container">
+        <nav ng-class="{'hide': !showMenu}" >
+            <div ng-repeat="menu in menus"
+                ng-class="{'selected': activeTab === menu.tab}"
+                ng-click="changeTab(menu.tab)"
+            >
+                <p>{{menu.name}}</p>
             </div>
         </nav>
-    </main>
+
+        <main ng-switch on="activeTab">
+            <clientes-tab ng-switch-when="clientes"></clientes-tab>
+            <ordem-tab ng-switch-when="ordens"></ordem-tab>
+        </main>
+    </div>
 </div>

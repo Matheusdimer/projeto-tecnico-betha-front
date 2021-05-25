@@ -96,6 +96,7 @@ header a:hover {
 
 nav {
     display: flex;
+    flex-direction: column;
     width: 13rem;
     height: calc(100vh - 60px);
     background-color: #f0f0f0;
@@ -130,4 +131,57 @@ nav > div.selected {
 
     background-color: #c9c9c9;
 
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-container main {
+    padding: 0 15px;
+
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    height: 35px;
+
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    text-align: left;
+}
+
+.tab-header {
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.tab-header input {
+    height: 28px;
+
+    border-radius: 5px;
+    border: 1px solid #888;
+
+    padding: 0 5px;
+}
+
+.tab-header button {
+    border-radius: 5px;
+    height: 28px;
+    min-width: 5rem;
+
+    background-color: #3265a0;
+    color: #fff;
+
+    margin: 0 5px;
 }

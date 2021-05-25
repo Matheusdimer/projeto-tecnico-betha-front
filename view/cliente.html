@@ -1,0 +1,37 @@
+<div>
+    <div class="tab-header">
+        <h2>Clientes</h2>
+        <div>
+            <button>Adicionar</button>
+            <input type="text" placeholder="Pesquisa" ng-model="search">
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Tipo</th>
+                <th>CPF/CNPJ</th>
+                <th>Telefones</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody ng-repeat="cliente in clientes | filter: search">
+            <tr>
+                <td>{{cliente.id}}</td>
+                <td>{{cliente.nome}}</td>
+                <td>{{cliente.email}}</td>
+                <td>{{cliente.tipoCliente}}</td>
+                <td>{{cliente.cpf_cnpj}}</td>
+                <td>{{cliente.telefones.join(", ")}}</td>
+                <td>
+                    <button class="action-btn">Editar</button>
+                    <button class="action-btn">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

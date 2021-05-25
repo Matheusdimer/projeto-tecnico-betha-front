@@ -3,6 +3,16 @@ angular.module("manutencaoApp").controller("appController", function($scope, $lo
 
     $scope.showUserInfo = false;
     $scope.showMenu = true;
+    $scope.activeTab = "clientes";
+
+    $scope.menus = [
+        {name: "Clientes", tab: "clientes"},
+        {name: "Ordens", tab: "ordens"},
+    ]
+
+    $scope.changeTab = (tab) => {
+        $scope.activeTab = tab;
+    }
 
     $scope.logout = () => {
         localStorage.clear();
