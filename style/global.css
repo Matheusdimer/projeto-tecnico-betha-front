@@ -13,6 +13,10 @@ body {
 button {
     border: 0;
     cursor: pointer;
+
+    height: 25px;
+    border-radius: 2px;
+    min-width: 60px;
 }
 
 button:hover {
