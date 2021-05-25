@@ -1,3 +1,102 @@
-<div>
-    <h2>Ordens</h2>
+<div class="ordem-container">
+    <div class="tab-header">
+        <h2>Ordens de Serviço</h2>
+        <div>
+            <button ng-click="adicionarOrdem()">
+                {{!novaOrdem ? 'Adicionar' : 'Cancelar'}}
+            </button>
+            <input type="text" placeholder="Pesquisa" ng-model="search" />
+        </div>
+    </div>
+
+    <div class="lista" ng-if="!novaOrdem">
+        <div class="">
+            <h2>Lista de Ordens</h2>
+        </div>
+
+        <div class="ordem-items"></div>
+    </div>
+
+    <div class="nova-ordem" ng-if="novaOrdem">
+        <h3>Nova ordem</h3>
+
+        <form>
+            <div class="ordem-header">
+                <div class="input-label">
+                    <label for="clienteId">Id do Cliente:</label>
+                    <input
+                        type="number"
+                        min="1"
+                        ng-model="ordem.cliente.id"
+                        id="clienteId"
+                    />
+                </div>
+                <div class="input-label">
+                    <label for="clienteNome">Nome do Cliente:</label>
+                    <input
+                        type="text"
+                        ng-model="ordem.cliente.nome"
+                        disabled
+                        id="clienteNome"
+                    />
+                </div>
+                <button
+                    class="text-btn"
+                    ng-click="buscarCliente(ordem.cliente.id)"
+                >
+                    Buscar
+                </button>
+                <div class="input-label observacoes">
+                    <label for="observacoes">Observações:</label>
+                    <input
+                        class="observacoes"
+                        type="text"
+                        ng-model="ordem.observacoes"
+                        id="observacoes"
+                    />
+                </div>
+            </div>
+
+            <div class="inline-itens">
+                <h3>Itens</h3>
+                <button class="text-btn" ng-click="addItem()">
+                    + Adicionar Item
+                </button>
+                <button class="text-btn" ng-click="adicionarEquipamento()">
+                    Novo Equipamento
+                </button>
+            </div>
+            <div
+                class="item-ordem inline-items"
+                ng-repeat="item in ordem.itens"
+            >
+                <span>{{$index + 1}}.</span>
+                <select
+                    ng-model="ordem.itens[$index].equipamento"
+                    ng-options="equipamento as (equipamento.marca + '-' + equipamento.modelo) for equipamento in ordem.cliente.equipamentos"
+                >
+                    <option value="">Selecione um equipamento</option>
+                </select>
+                <input
+                    type="text"
+                    placeholder="Problema"
+                    ng-model="ordem.itens[$index].problema"
+                />
+                <button
+                    class="text-btn"
+                    style="color: #f88"
+                    ng-click="removeItem($index)"
+                >
+                    Remover
+                </button>
+            </div>
+            <button
+                ng-disabled="!ordem.cliente.nome || ordem.itens.length === 0"
+                class="ordem-save-btn"
+                ng-click="salvarOrdem(ordem)"
+            >
+                Salvar
+            </button>
+        </form>
+    </div>
 </div>

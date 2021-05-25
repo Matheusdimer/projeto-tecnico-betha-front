@@ -20,6 +20,10 @@ header div.title {
     column-gap: 10px;
 }
 
+header div.title button {
+    min-width: 0;
+}
+
 header div.title button > img {
     width: 25px;
 }
@@ -140,8 +144,12 @@ nav > div.selected {
 
 .main-container main {
     padding: 0 15px;
+    padding-bottom: 15px;
 
     width: 100%;
+
+    height: calc(100vh - 60px);
+    overflow-y: auto;
 }
 
 table {
@@ -150,13 +158,23 @@ table {
 }
 
 tr {
-    height: 35px;
+    height: 40px;
 
     border-bottom: 1px solid #ddd;
 }
 
 th {
     text-align: left;
+}
+
+tbody > tr {
+    cursor: pointer;
+
+    transition: background-color 200ms;
+}
+
+tbody > tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .tab-header {
@@ -194,7 +212,8 @@ th {
     left: 0;
     top: 0;
 
-    background-color: rgba(0, 0, 0, 0.3)
+    background-color: rgba(0, 0, 0, 0.3);
+    animation: fadein 300ms backwards;
 }
 
 .action-btn {
@@ -227,6 +246,8 @@ th {
     display: flex;
     flex-direction: column;
     padding: 2rem;
+
+    animation: fadein 300ms backwards;
 }
 
 #cliente-details > form {
@@ -264,4 +285,106 @@ th {
 .btn-container .save-btn {
     background-color: #1f72d1;
     color: #fff;
+}
+
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*=============Ordens de Servico===============*/
+
+button.text-btn {
+    height: 32px;
+    padding: 0 15px;
+
+    background-color: transparent;
+    color: #1f72d1;
+
+    text-transform: uppercase;
+    border-radius: 3px;
+
+    font-weight: 500;
+    font-size: 15px;
+}
+
+button.text-btn:hover {
+    background-color: #f0f0f0;
+    filter: none;
+}
+
+.inline-itens {
+    display: flex;
+    align-items: center;
+
+    column-gap: 15px;
+}
+
+.item-ordem {
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.item-ordem input {
+    flex-grow: 1;
+    max-width: 50rem;
+}
+
+.item-ordem select {
+    width: 20rem;
+    height: 32px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.ordem-header {
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+    gap: 5px;
+
+    align-items: end;
+
+    max-width: 50rem;
+}
+
+.observacoes {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.input-label {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+}
+
+label {
+    font-size: 14px;
+}
+
+.ordem-save-btn {
+    margin: 15px 0;
+    width: 10rem;
+
+    background-color: transparent;
+    color: #1f72d1;
+
+    border: 3px solid #1f72d1;
+}
+
+.ordem-save-btn:disabled {
+    color: #888;
+    border-color: #888;
+    background-color: #fff;
 }

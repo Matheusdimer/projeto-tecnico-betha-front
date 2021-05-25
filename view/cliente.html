@@ -20,21 +20,13 @@
         </thead>
 
         <tbody ng-repeat="cliente in clientes | filter: search">
-            <tr>
+            <tr ng-click="editarCliente(cliente)">
                 <td>{{cliente.id}}</td>
                 <td>{{cliente.nome}}</td>
                 <td>{{cliente.email}}</td>
                 <td>{{cliente.tipoCliente}}</td>
                 <td>{{cliente.cpf_cnpj}}</td>
                 <td>{{cliente.telefones.join(", ")}}</td>
-                <td>
-                    <button class="action-btn" ng-click="editarCliente(cliente)">
-                        <img src="assets/edit.svg" alt="">
-                    </button>
-                    <button class="action-btn">
-                        <img src="assets/delete.svg" alt="">
-                    </button>
-                </td>
             </tr>
         </tbody>
     </table>
@@ -76,13 +68,33 @@
 
                 <p>Endereco</p>
                 <div>
-                    <input type="text" placeholder="Endereço" ng-model="cliente.endereco" />
-                    <input type="text" placeholder="Número" ng-model="cliente.numero"/>
-                    <input type="text" placeholder="Bairro" ng-model="cliente.bairro"/>
+                    <input
+                        type="text"
+                        placeholder="Endereço"
+                        ng-model="cliente.endereco"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Número"
+                        ng-model="cliente.numero"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Bairro"
+                        ng-model="cliente.bairro"
+                    />
                 </div>
                 <div>
-                    <input type="text" placeholder="CEP" ng-model="cliente.cep" />
-                    <input type="text" placeholder="Complemento" ng-model="cliente.complemento" />
+                    <input
+                        type="text"
+                        placeholder="CEP"
+                        ng-model="cliente.cep"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Complemento"
+                        ng-model="cliente.complemento"
+                    />
                     <select
                         ng-model="cliente.estado"
                         ng-options="estado.id as estado.sigla for estado in estados"
@@ -100,7 +112,9 @@
             </form>
             <div class="btn-container">
                 <button ng-click="cancel()">Fechar</button>
-                <button ng-click="salvarCliente(cliente)" class="save-btn">Salvar</button>
+                <button ng-click="salvarCliente(cliente)" class="save-btn">
+                    Salvar
+                </button>
             </div>
         </div>
     </div>

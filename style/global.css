@@ -14,9 +14,14 @@ button {
     border: 0;
     cursor: pointer;
 
-    height: 25px;
-    border-radius: 2px;
-    min-width: 60px;
+    height: 30px;
+    border-radius: 3px;
+    min-width: 90px;
+
+    text-transform: uppercase;
+
+    padding: 0 15px;
+    font-size: 14px;
 }
 
 button:hover {

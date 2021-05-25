@@ -1,3 +1,3 @@
 angular.module("manutencaoApp").constant("config", {
-    apiUrl: "http://localhost:8080"
+    apiUrl: "https://manutencao-projeto-betha.herokuapp.com"
 });

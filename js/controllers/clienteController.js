@@ -56,8 +56,11 @@ angular.module("manutencaoApp").controller("clienteController", function ($scope
             ...$scope.cliente,
             ...$scope.cliente.endereco,
             cidadeId: $scope.cliente.endereco.cidade.id,
+            estado: $scope.cliente.endereco.cidade.estado.id,
             id: clienteId
         }
+
+        $scope.loadCidades();
 
         $scope.isNewCliente = false;
         $scope.showDetails = true;
@@ -76,7 +79,6 @@ angular.module("manutencaoApp").controller("clienteController", function ($scope
             });
         } else {
             clienteService.update(cliente).then((res) => {
-                console.log(res.data);
                 $scope.loadData();
                 $scope.showDetails = false;
             });

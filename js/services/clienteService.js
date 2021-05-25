@@ -3,6 +3,14 @@ angular.module("manutencaoApp").service("clienteService", function($http, config
         return $http.get(config.apiUrl + "/clientes");
     }
 
+    this.findOne = (clienteId) => {
+        return $http.get(config.apiUrl + "/clientes/" + clienteId);
+    }
+
+    this.findEquipamentos = (clienteId) => {
+        return $http.get(config.apiUrl + "/clientes/" + clienteId + "/equipamentos");
+    }
+
     this.add = (cliente) => {
         return $http.post(config.apiUrl + "/clientes", cliente);
     }

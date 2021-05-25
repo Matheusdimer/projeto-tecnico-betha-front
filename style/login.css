@@ -42,11 +42,15 @@ form input, select {
     border: 1px solid #aaa;
 
     border-radius: 5px;
-    height: 2.5rem;
 
     padding: 0 5px;
+    height: 2rem;
 
     font-size: 14px;
+}
+
+.login-page form input {
+    height: 2.5rem;
 }
 
 form input:focus, select:focus {
@@ -67,6 +71,4 @@ form button {
     transition: 200ms;
 
     cursor: pointer;
-
-    margin-bottom: 20px;
 }

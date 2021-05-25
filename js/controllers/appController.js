@@ -3,7 +3,7 @@ angular.module("manutencaoApp").controller("appController", function($scope, $lo
 
     $scope.showUserInfo = false;
     $scope.showMenu = true;
-    $scope.activeTab = "clientes";
+    $scope.activeTab = "ordens";
 
     $scope.menus = [
         {name: "Clientes", tab: "clientes"},
