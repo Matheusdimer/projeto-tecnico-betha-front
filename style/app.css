@@ -197,6 +197,20 @@ th {
     background-color: rgba(0, 0, 0, 0.3)
 }
 
+.action-btn {
+    background: none;
+    border-radius: 50%;
+    max-width: 25px;
+}
+
+.action-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.action-btn img {
+    width: 20px;
+}
+
 #cliente-details {
     position: fixed;
 

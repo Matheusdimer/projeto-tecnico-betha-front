@@ -28,8 +28,12 @@
                 <td>{{cliente.cpf_cnpj}}</td>
                 <td>{{cliente.telefones.join(", ")}}</td>
                 <td>
-                    <button class="action-btn" ng-click="editarCliente(cliente)">Editar</button>
-                    <button class="action-btn">Excluir</button>
+                    <button class="action-btn" ng-click="editarCliente(cliente)">
+                        <img src="assets/edit.svg" alt="">
+                    </button>
+                    <button class="action-btn">
+                        <img src="assets/delete.svg" alt="">
+                    </button>
                 </td>
             </tr>
         </tbody>
