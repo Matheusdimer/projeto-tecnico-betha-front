@@ -18,4 +18,8 @@ angular.module("manutencaoApp").service("clienteService", function($http, config
     this.update = (cliente) => {
         return $http.put(config.apiUrl + "/clientes/" + cliente.id, cliente);
     }
+
+    this.addEquipamento = (clienteId, equipamento) => {
+        return $http.post(config.apiUrl + "/clientes/" + clienteId + "/equipamentos", equipamento);
+    }
 });

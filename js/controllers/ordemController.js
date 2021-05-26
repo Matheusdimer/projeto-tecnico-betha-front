@@ -1,6 +1,8 @@
 angular.module("manutencaoApp").controller("ordemController", function($scope, ordemService, clienteService) {
     $scope.ordens = [];
-    $scope.novaOrdem = true;
+    $scope.novaOrdem = false;
+    $scope.showItens = false;
+    $scope.novoEquipamento = false;
 
     $scope.ordem = {itens: []};
 
@@ -8,6 +10,11 @@ angular.module("manutencaoApp").controller("ordemController", function($scope, o
         ordemService.findAll().then((res) => {
             $scope.ordens = res.data;
         });
+    }
+
+    $scope.mostrarItens = (ordem) => {
+        $scope.showItens = true;
+        $scope.ordem = ordem;
     }
 
     $scope.adicionarOrdem = () => {
@@ -35,12 +42,32 @@ angular.module("manutencaoApp").controller("ordemController", function($scope, o
         });
     }
 
+    $scope.adicionarEquipamento = () => {
+        if ($scope.ordem.cliente && $scope.ordem.cliente.nome) {
+            $scope.novoEquipamento = true;
+        } else {
+            alert("Nenhum cliente selecionado!")
+        }
+    }
+
+    $scope.cancelarNovoEquipamento = () => {
+        $scope.novoEquipamento = false;
+    }
+
+    $scope.salvarNovoEquipamento = (cliente, equipamento) => {
+        clienteService.addEquipamento(cliente.id, equipamento).then((res) => {
+            $scope.ordem.cliente.equipamentos.push(res.data);
+            $scope.novoEquipamento = false;
+        });
+    }
+
     $scope.salvarOrdem = (ordem) => {
         delete ordem.cliente.equipamentos;
 
         ordemService.add(ordem).then((res) => {
-            console.log(res.data);
-        })
+            $scope.novaOrdem = false;
+            $scope.loadData();
+        });
     }
 
     function onInit() {

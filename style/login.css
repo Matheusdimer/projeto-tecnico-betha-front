@@ -59,8 +59,6 @@ form input:focus, select:focus {
 }
 
 form button {
-    height: 2.5rem;
-
     border-radius: 5px;
     background-color: #3475c1;
     color: #fff;
@@ -71,4 +69,8 @@ form button {
     transition: 200ms;
 
     cursor: pointer;
+}
+
+.login-page form button {
+    height: 2.5rem;
 }

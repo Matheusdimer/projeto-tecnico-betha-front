@@ -212,6 +212,10 @@ tbody > tr:hover {
     left: 0;
     top: 0;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background-color: rgba(0, 0, 0, 0.3);
     animation: fadein 300ms backwards;
 }
@@ -348,6 +352,17 @@ form {
     row-gap: 5px;
 }
 
+.ordem-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .ordem-header {
     display: grid;
     grid-template-columns: 20% 70% 10%;
@@ -356,6 +371,14 @@ form {
     align-items: end;
 
     max-width: 50rem;
+}
+
+.ordem-head {
+    min-height: 50%;
+}
+
+.ordem-body {
+    flex-grow: 1;
 }
 
 .observacoes {
@@ -367,6 +390,10 @@ form {
     display: flex;
     flex-direction: column;
     row-gap: 2px;
+}
+
+.noborder {
+    border: 0;
 }
 
 label {
@@ -387,4 +414,37 @@ label {
     color: #888;
     border-color: #888;
     background-color: #fff;
+}
+
+div.avaria {
+    width: 100%;
+}
+
+.number {
+    width: 40px;
+}
+
+.avaria .desc {
+    min-width: 50%;
+}
+
+div.avaria > div {
+    width: 100%;
+    display: flex;
+}
+
+div.avaria h4 {
+    margin: 0;
+}
+
+.novo-equipamento {
+    background-color: #fff;
+    border-radius: 3px;
+
+    padding: 2rem;
+    box-shadow: 2px 2px 6px #777;
+}
+
+.novo-equipamento #eq-modelo, #eq-clienteNome {
+    width: 20rem;
 }

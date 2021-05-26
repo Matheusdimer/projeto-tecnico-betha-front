@@ -64,8 +64,6 @@ angular.module("manutencaoApp").controller("clienteController", function ($scope
 
         $scope.isNewCliente = false;
         $scope.showDetails = true;
-
-        console.log(cliente);
     }
 
     $scope.salvarCliente = (cliente) => {
