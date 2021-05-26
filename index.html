@@ -37,8 +37,13 @@
     <script src="js/services/estadoService.js"></script>
 
     <script src="js/interceptors/authorizationInterceptor.js"></script>
+    <script src="js/interceptors/loadingInterceptor.js"></script>
 </head>
-<body ng-view>
-    
+
+<body>
+    <div ng-class="{'hide': !isLoading}" class="loading">
+        <p>Carregando...</p>
+    </div>
+    <ng-view></ng-view>
 </body>
 </html>

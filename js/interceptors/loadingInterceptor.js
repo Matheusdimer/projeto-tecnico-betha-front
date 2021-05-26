@@ -1,21 +1,19 @@
-angular.module("manutencaoApp").factory("authorizationInterceptor", function($q) {
+angular.module("manutencaoApp").factory("loadingInterceptor", function($q, $rootScope) {
     return {
         request: (config) => {
-            const token = localStorage.getItem("session_token");
-            
-            if (token) {
-                config.headers.Authorization = token;
-            }
-            
+            $rootScope.isLoading = true;
             return config;
         },
         requestError: (rejection) => {
+            $rootScope.isLoading = false;
             return $q.reject(rejection);
         },
         response: (response) => {
+            $rootScope.isLoading = false;
             return response;
         },
         responseError: (rejection) => {
+            $rootScope.isLoading = false;
             return $q.reject(rejection);
         }
     };

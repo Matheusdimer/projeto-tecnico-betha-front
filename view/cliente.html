@@ -1,7 +1,16 @@
 <div>
     <div class="tab-header">
-        <h2>Clientes</h2>
-        <div>
+        <div class="inline-itens">
+            <h2>Clientes</h2>
+            <button
+                ng-hide="showNovaOrdem"
+                ng-click="loadData()"
+                class="icon-btn"
+            >
+                <img src="assets/refresh.svg" alt="Atualizar" />
+            </button>
+        </div>
+        <div class="inline-itens">
             <button ng-click="adicionarCliente()">Adicionar</button>
             <input type="text" placeholder="Pesquisa" ng-model="search" />
         </div>

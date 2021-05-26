@@ -1,10 +1,13 @@
 angular.module("manutencaoApp").controller("ordemController", function($scope, ordemService, clienteService) {
     $scope.ordens = [];
-    $scope.novaOrdem = false;
+    $scope.novaOrdem = { itens: [] };
+    $scope.showNovaOrdem = false;
     $scope.showItens = false;
     $scope.novoEquipamento = false;
 
-    $scope.ordem = {itens: []};
+    function clearNovaOrdem() {
+        $scope.novaOrdem = { itens: [] };
+    }
 
     $scope.loadData = () => {
         ordemService.findAll().then((res) => {
@@ -18,32 +21,32 @@ angular.module("manutencaoApp").controller("ordemController", function($scope, o
     }
 
     $scope.adicionarOrdem = () => {
-        $scope.novaOrdem = !$scope.novaOrdem;
+        $scope.showNovaOrdem = !$scope.showNovaOrdem;
     }
 
     $scope.addItem = () => {
-        $scope.ordem.itens.push({});
+        $scope.novaOrdem.itens.push({});
     }
 
     $scope.removeItem = (index) => {
-        $scope.ordem.itens.splice(index, 1);
+        $scope.novaOrdem.itens.splice(index, 1);
     }
 
     $scope.buscarCliente = (clienteId) => {
         clienteService.findOne(clienteId).then((res) => {
-            $scope.ordem.cliente = res.data;
+            $scope.novaOrdem.cliente = res.data;
             $scope.findEquipamentos(clienteId);
         });
     }
 
     $scope.findEquipamentos = (clienteId) => {
         clienteService.findEquipamentos(clienteId).then((res) => {
-            $scope.ordem.cliente.equipamentos = res.data;
+            $scope.novaOrdem.cliente.equipamentos = res.data;
         });
     }
 
     $scope.adicionarEquipamento = () => {
-        if ($scope.ordem.cliente && $scope.ordem.cliente.nome) {
+        if ($scope.novaOrdem.cliente && $scope.novaOrdem.cliente.nome) {
             $scope.novoEquipamento = true;
         } else {
             alert("Nenhum cliente selecionado!")
@@ -56,17 +59,18 @@ angular.module("manutencaoApp").controller("ordemController", function($scope, o
 
     $scope.salvarNovoEquipamento = (cliente, equipamento) => {
         clienteService.addEquipamento(cliente.id, equipamento).then((res) => {
-            $scope.ordem.cliente.equipamentos.push(res.data);
+            $scope.novaOrdem.cliente.equipamentos.push(res.data);
             $scope.novoEquipamento = false;
         });
     }
 
-    $scope.salvarOrdem = (ordem) => {
-        delete ordem.cliente.equipamentos;
+    $scope.salvarOrdem = (novaOrdem) => {
+        delete novaOrdem.cliente.equipamentos;
 
-        ordemService.add(ordem).then((res) => {
-            $scope.novaOrdem = false;
+        ordemService.add(novaOrdem).then((res) => {
+            $scope.showNovaOrdem = false;
             $scope.loadData();
+            clearNovaOrdem();
         });
     }
 

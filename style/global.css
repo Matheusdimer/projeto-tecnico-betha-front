@@ -14,9 +14,10 @@ button {
     border: 0;
     cursor: pointer;
 
+    min-width: 90px;
+
     height: 30px;
     border-radius: 3px;
-    min-width: 90px;
 
     text-transform: uppercase;
 
@@ -30,4 +31,32 @@ button:hover {
 
 button:disabled {
     background-color: #AAA;
+}
+
+div.loading {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
+
+    width: 10rem;
+    height: 2.3rem;
+    background-color: #f5da92;
+
+    border-radius: 3px;
+
+    border: 2px solid #9e8339;
+    padding: 0 1rem;
+
+    z-index: 5;
+
+    color: #222;
+}
+
+div.loading.hide {
+    bottom: -100%;
 }
