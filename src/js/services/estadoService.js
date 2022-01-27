@@ -1,4 +1,8 @@
-angular.module("manutencaoApp").service("estadoService", function($http, config) {
+import angular from 'angular';
+
+export const estadoServiceName = 'estadoService'
+
+export function EstadoService($http, config) {
     this.findAll = () => {
         return $http.get(config.apiUrl + "/estados");
     };
@@ -6,4 +10,4 @@ angular.module("manutencaoApp").service("estadoService", function($http, config)
     this.findCidades = (estadoId) => {
         return $http.get(config.apiUrl + "/estados/" + estadoId + "/cidades");
     };
-});
+};

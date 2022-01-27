@@ -4,21 +4,21 @@
             <h2>Ordens de Serviço</h2>
             <button
                 ng-hide="showNovaOrdem"
-                ng-click="loadData()"
+                ng-click="vm.loadData()"
                 class="icon-btn"
             >
                 <img src="assets/refresh.svg" alt="Atualizar" />
             </button>
         </div>
         <div class="inline-itens">
-            <button ng-click="adicionarOrdem()" ng-class="{'text-btn': showNovaOrdem}">
-                {{!showNovaOrdem ? 'Adicionar' : 'Cancelar'}}
+            <button ng-click="vm.adicionarOrdem()" ng-class="{'text-btn': showNovaOrdem}">
+                {{!vm.showNovaOrdem ? 'Adicionar' : 'Cancelar'}}
             </button>
             <input type="text" placeholder="Pesquisa" ng-model="search" />
         </div>
     </div>
 
-    <div class="lista" ng-if="!showNovaOrdem">
+    <div class="lista" ng-if="!vm.showNovaOrdem">
         <div class="ordem-head">
             <table>
                 <thead>
@@ -33,8 +33,8 @@
                     </tr>
                 </thead>
 
-                <tbody ng-repeat="ordem in ordens | filter: search">
-                    <tr ng-click="mostrarItens(ordem)">
+                <tbody ng-repeat="ordem in vm.ordens | filter: search">
+                    <tr ng-click="vm.mostrarItens(ordem)">
                         <td>{{ ordem.id }}</td>
                         <td>{{ ordem.cliente.nome }}</td>
                         <td>{{ ::ordem.dataInclusao | date: 'dd/MM/yyyy' }}</td>
@@ -48,7 +48,7 @@
                 </tbody>
             </table>
         </div>
-        <div ng-if="showItens" class="ordem-body">
+        <div ng-if="vm.showItens" class="ordem-body">
             <h2>Itens</h2>
             <table>
                 <thead>
@@ -60,7 +60,7 @@
                     </tr>
                 </thead>
 
-                <tbody ng-repeat="item in ordem.itens">
+                <tbody ng-repeat="item in vm.ordem.itens">
                     <tr class="noborder">
                         <td class="number">{{ $index + 1 }}</td>
                         <td>{{ item.equipamento.marca }}</td>
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div class="nova-ordem" ng-if="showNovaOrdem">
+    <div class="nova-ordem" ng-if="vm.showNovaOrdem">
         <h3>Nova ordem</h3>
 
         <form>
@@ -112,7 +112,7 @@
                     <input
                         type="number"
                         min="1"
-                        ng-model="novaOrdem.cliente.id"
+                        ng-model="vm.novaOrdem.cliente.id"
                         id="clienteId"
                     />
                 </div>
@@ -120,14 +120,14 @@
                     <label for="clienteNome">Nome do Cliente:</label>
                     <input
                         type="text"
-                        ng-model="novaOrdem.cliente.nome"
+                        ng-model="vm.novaOrdem.cliente.nome"
                         disabled
                         id="clienteNome"
                     />
                 </div>
                 <button
                     class="text-btn"
-                    ng-click="buscarCliente(novaOrdem.cliente.id)"
+                    ng-click="vm.buscarCliente(vm.novaOrdem.cliente.id)"
                 >
                     Buscar
                 </button>
@@ -136,7 +136,7 @@
                     <input
                         class="observacoes"
                         type="text"
-                        ng-model="novaOrdem.observacoes"
+                        ng-model="vm.novaOrdem.observacoes"
                         id="observacoes"
                     />
                 </div>
@@ -144,46 +144,46 @@
 
             <div class="inline-itens">
                 <h3>Itens</h3>
-                <button class="text-btn" ng-click="addItem()">
+                <button class="text-btn" ng-click="vm.addItem()">
                     + Adicionar Item
                 </button>
-                <button class="text-btn" ng-click="adicionarEquipamento()">
+                <button class="text-btn" ng-click="vm.adicionarEquipamento()">
                     Novo Equipamento
                 </button>
             </div>
             <div
                 class="item-ordem inline-items"
-                ng-repeat="item in novaOrdem.itens"
+                ng-repeat="item in vm.novaOrdem.itens"
             >
                 <span>{{$index + 1}}.</span>
                 <select
-                    ng-model="novaOrdem.itens[$index].equipamento"
-                    ng-options="equipamento as (equipamento.marca + '-' + equipamento.modelo) for equipamento in novaOrdem.cliente.equipamentos"
+                    ng-model="vm.novaOrdem.itens[$index].equipamento"
+                    ng-options="equipamento as (equipamento.marca + '-' + equipamento.modelo) for equipamento in vm.novaOrdem.cliente.equipamentos"
                 >
                     <option value="">Selecione um equipamento</option>
                 </select>
                 <input
                     type="text"
                     placeholder="Problema"
-                    ng-model="novaOrdem.itens[$index].problema"
+                    ng-model="vm.novaOrdem.itens[$index].problema"
                 />
                 <button
                     class="text-btn"
                     style="color: #f88"
-                    ng-click="removeItem($index)"
+                    ng-click="vm.removeItem($index)"
                 >
                     Remover
                 </button>
             </div>
             <button
-                ng-disabled="!novaOrdem.cliente.nome || novaOrdem.itens.length === 0"
+                ng-disabled="!vm.novaOrdem.cliente.nome || vm.novaOrdem.itens.length === 0"
                 class="ordem-save-btn"
-                ng-click="salvarOrdem(novaOrdem)"
+                ng-click="vm.salvarOrdem(novaOrdem)"
             >
                 Salvar
             </button>
 
-            <div ng-if="novoEquipamento" class="mask">
+            <div ng-if="vm.novoEquipamento" class="mask">
                 <div class="novo-equipamento">
                     <h3>Novo equipamento:</h3>
                     <form>
@@ -193,7 +193,7 @@
                                 <label for="eq-clienteId">Id do Cliente</label>
                                 <input
                                     type="text"
-                                    ng-model="novaOrdem.cliente.id"
+                                    ng-model="vm.novaOrdem.cliente.id"
                                     id="eq-clienteId"
                                     disabled
                                 />
@@ -204,7 +204,7 @@
                                 >
                                 <input
                                     type="text"
-                                    ng-model="novaOrdem.cliente.nome"
+                                    ng-model="vm.novaOrdem.cliente.nome"
                                     id="eq-clienteNome"
                                     disabled
                                 />
@@ -238,7 +238,7 @@
                                 <label for="eq-marca">Marca</label>
                                 <input
                                     type="text"
-                                    ng-model="equipamento.marca"
+                                    ng-model="vm.equipamento.marca"
                                     id="eq-marca"
                                 />
                             </div>
@@ -246,7 +246,7 @@
                                 <label for="eq-modelo">Modelo</label>
                                 <input
                                     type="text"
-                                    ng-model="equipamento.modelo"
+                                    ng-model="vm.equipamento.modelo"
                                     id="eq-modelo"
                                 />
                             </div>
@@ -255,13 +255,13 @@
                         <div class="btn-container">
                             <button
                                 class="text-btn"
-                                ng-click="cancelarNovoEquipamento()"
+                                ng-click="vm.cancelarNovoEquipamento()"
                             >
                                 Cancelar
                             </button>
                             <button
                                 class="outline-btn"
-                                ng-click="salvarNovoEquipamento(novaOrdem.cliente, equipamento)"
+                                ng-click="vm.salvarNovoEquipamento(novaOrdem.cliente, equipamento)"
                             >
                                 Salvar
                             </button>

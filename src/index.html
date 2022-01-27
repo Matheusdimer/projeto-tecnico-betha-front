@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="manutencaoApp" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style/global.css">
+    <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="style/app.css">
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="//code.angularjs.org/1.4.4/angular-route.js"></script>
+</head>
+
+<body>
+    <div ng-class="{'hide': !isLoading}" class="loading">
+        <p>Carregando...</p>
+    </div>
+    <ng-view></ng-view>
+</body>
+</html>

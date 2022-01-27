@@ -1,4 +1,8 @@
-angular.module("manutencaoApp").service("clienteService", function($http, config) {
+import angular from 'angular';
+
+export const clienteServiceName = 'clienteService'
+
+export function ClienteService($http, config) {
     this.findAll = () => {
         return $http.get(config.apiUrl + "/clientes");
     }
@@ -22,4 +26,4 @@ angular.module("manutencaoApp").service("clienteService", function($http, config
     this.addEquipamento = (clienteId, equipamento) => {
         return $http.post(config.apiUrl + "/clientes/" + clienteId + "/equipamentos", equipamento);
     }
-});
+};

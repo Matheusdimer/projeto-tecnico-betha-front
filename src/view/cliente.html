@@ -3,15 +3,15 @@
         <div class="inline-itens">
             <h2>Clientes</h2>
             <button
-                ng-hide="showNovaOrdem"
-                ng-click="loadData()"
+                ng-hide="vm.showNovaOrdem"
+                ng-click="vm.loadData()"
                 class="icon-btn"
             >
                 <img src="assets/refresh.svg" alt="Atualizar" />
             </button>
         </div>
         <div class="inline-itens">
-            <button ng-click="adicionarCliente()">Adicionar</button>
+            <button ng-click="vm.adicionarCliente()">Adicionar</button>
             <input type="text" placeholder="Pesquisa" ng-model="search" />
         </div>
     </div>
@@ -28,8 +28,8 @@
             </tr>
         </thead>
 
-        <tbody ng-repeat="cliente in clientes | filter: search">
-            <tr ng-click="editarCliente(cliente)">
+        <tbody ng-repeat="cliente in vm.clientes | filter: search">
+            <tr ng-click="vm.editarCliente(cliente)">
                 <td>{{cliente.id}}</td>
                 <td>{{cliente.nome}}</td>
                 <td>{{cliente.email}}</td>
@@ -40,21 +40,21 @@
         </tbody>
     </table>
 
-    <div class="mask" ng-if="showDetails">
+    <div class="mask" ng-if="vm.showDetails">
         <div id="cliente-details">
             <h3>Cliente</h3>
             <form>
-                <input type="text" placeholder="Nome" ng-model="cliente.nome" />
+                <input type="text" placeholder="Nome" ng-model="vm.cliente.nome" />
 
                 <div>
                     <input
                         type="text"
                         placeholder="E-mail"
-                        ng-model="cliente.email"
+                        ng-model="vm.cliente.email"
                     />
                     <select
-                        ng-model="cliente.tipoCliente"
-                        ng-options="tipo.value as tipo.desc for tipo in tipoClientes"
+                        ng-model="vm.cliente.tipoCliente"
+                        ng-options="tipo.value as tipo.desc for tipo in vm.tipoClientes"
                     >
                         <option value="">Selecione</option>
                     </select>
@@ -62,16 +62,16 @@
                     <input
                         type="text"
                         placeholder="CPF/CNPJ"
-                        ng-model="cliente.cpf_cnpj"
+                        ng-model="vm.cliente.cpf_cnpj"
                     />
                 </div>
                 <p>Telefones</p>
-                <div ng-repeat="telefone in cliente.telefones">
+                <div ng-repeat="telefone in vm.cliente.telefones">
                     <input
                         class="phone"
                         type="tel"
                         placeholder="Telefone {{$index + 1}}"
-                        ng-model="cliente.telefones[$index]"
+                        ng-model="vm.cliente.telefones[$index]"
                     />
                 </div>
 
@@ -80,48 +80,48 @@
                     <input
                         type="text"
                         placeholder="Endereço"
-                        ng-model="cliente.endereco"
+                        ng-model="vm.cliente.endereco"
                     />
                     <input
                         type="text"
                         placeholder="Número"
-                        ng-model="cliente.numero"
+                        ng-model="vm.cliente.numero"
                     />
                     <input
                         type="text"
                         placeholder="Bairro"
-                        ng-model="cliente.bairro"
+                        ng-model="vm.cliente.bairro"
                     />
                 </div>
                 <div>
                     <input
                         type="text"
                         placeholder="CEP"
-                        ng-model="cliente.cep"
+                        ng-model="vm.cliente.cep"
                     />
                     <input
                         type="text"
                         placeholder="Complemento"
-                        ng-model="cliente.complemento"
+                        ng-model="vm.cliente.complemento"
                     />
                     <select
-                        ng-model="cliente.estado"
-                        ng-options="estado.id as estado.sigla for estado in estados"
-                        ng-change="loadCidades()"
+                        ng-model="vm.cliente.estado"
+                        ng-options="estado.id as estado.sigla for estado in vm.estados"
+                        ng-change="vm.loadCidades()"
                     >
                         <option value="">Selecione um estado</option>
                     </select>
                     <select
-                        ng-model="cliente.cidadeId"
-                        ng-options="cidade.id as cidade.nome for cidade in cidades"
+                        ng-model="vm.cliente.cidadeId"
+                        ng-options="cidade.id as cidade.nome for cidade in vm.cidades"
                     >
                         <option value="">Selecione uma cidade</option>
                     </select>
                 </div>
             </form>
             <div class="btn-container">
-                <button ng-click="cancel()">Fechar</button>
-                <button ng-click="salvarCliente(cliente)" class="save-btn">
+                <button ng-click="vm.cancel()">Fechar</button>
+                <button ng-click="vm.salvarCliente(cliente)" class="save-btn">
                     Salvar
                 </button>
             </div>

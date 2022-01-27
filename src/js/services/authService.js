@@ -1,4 +1,8 @@
-angular.module("manutencaoApp").service("authAPI", function($http, config) {
+import angular from 'angular';
+
+export const authServiceName = 'authAPI'
+
+export function AuthService($http, config) {
     this.login = (user) => {
         return $http.post(config.apiUrl + "/login", user, {
             hearders: {
@@ -14,4 +18,4 @@ angular.module("manutencaoApp").service("authAPI", function($http, config) {
             }
         });
     }
-});
+};
