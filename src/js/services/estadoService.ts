@@ -1,8 +1,11 @@
-import angular from 'angular';
+EstadoService.$inject = [
+    '$http',
+    'config'
+]
 
 export const estadoServiceName = 'estadoService'
 
-export function EstadoService($http, config) {
+export function EstadoService(this: any, $http, config) {
     this.findAll = () => {
         return $http.get(config.apiUrl + "/estados");
     };

@@ -1,4 +1,3 @@
-import angular from 'angular';
 import { clienteServiceName } from '../services/clienteService';
 import { ordemServiceName } from '../services/ordemService';
 
@@ -9,7 +8,7 @@ OrdemController.$inject = [
     clienteServiceName
 ]
 
-export function OrdemController(ordemService, clienteService) {
+export function OrdemController(this: any, ordemService, clienteService) {
     const vm = this;
 
     vm.ordens = [];

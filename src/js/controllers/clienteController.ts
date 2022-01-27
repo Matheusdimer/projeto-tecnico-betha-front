@@ -8,7 +8,7 @@ ClienteController.$inject = [
     estadoServiceName
 ]
 
-export function ClienteController (clienteService, estadoService) {
+export function ClienteController (this: any, clienteService, estadoService) {
     const vm = this;
     
     vm.showDetails = false;

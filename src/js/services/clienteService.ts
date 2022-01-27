@@ -1,8 +1,11 @@
-import angular from 'angular';
+ClienteService.$inject = [
+    '$http',
+    'config'
+]
 
 export const clienteServiceName = 'clienteService'
 
-export function ClienteService($http, config) {
+export function ClienteService(this: any, $http, config) {
     this.findAll = () => {
         return $http.get(config.apiUrl + "/clientes");
     }

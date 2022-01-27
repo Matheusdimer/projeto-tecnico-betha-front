@@ -2,7 +2,7 @@
     <header>
         <div class="title">
             <button ng-click="vm.toggleMenu()">
-                <img src="assets/menu.svg" alt="Menu">
+                <img src="http://localhost:9000/assets/menu.svg" alt="Menu">
             </button>
             <h1>Manutenção</h1>
         </div>
@@ -11,11 +11,11 @@
             <a>
                 {{vm.user.nomeCompleto}}
             </a>
-            <img src="assets/arrow-down.svg" alt="">
+            <img src="http://localhost:9000/assets/arrow-down.svg" alt="">
         </div>
 
         <div ng-show="vm.showUserInfo" class="user-info">
-            <img src="assets/user-default.png" alt="">
+            <img src="http://localhost:9000/assets/user-default.png" alt="">
             <div>
                 <p><strong>Usuário:</strong> {{vm.user.username}}</p>
                 <p><strong>Nome:</strong> {{vm.user.nomeCompleto}}</p>

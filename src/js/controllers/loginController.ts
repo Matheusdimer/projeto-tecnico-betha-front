@@ -7,7 +7,7 @@ LoginController.$inject = [
     '$location'
 ]
 
-export function LoginController(authAPI, $location) {
+export function LoginController(this: any, authAPI, $location) {
     const vm = this;
 
     vm.submitLogin = (user) => {

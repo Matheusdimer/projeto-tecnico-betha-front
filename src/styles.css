@@ -1,3 +1,66 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Lato', sans-serif;
+
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+
+    min-width: 90px;
+
+    height: 30px;
+    border-radius: 3px;
+
+    text-transform: uppercase;
+
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+button:hover {
+    filter: brightness(80%);
+}
+
+button:disabled {
+    background-color: #AAA;
+}
+
+div.loading {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
+
+    width: 10rem;
+    height: 2.3rem;
+    background-color: #f5da92;
+
+    border-radius: 3px;
+
+    border: 2px solid #9e8339;
+    padding: 0 1rem;
+
+    z-index: 5;
+
+    color: #222;
+}
+
+div.loading.hide {
+    bottom: -100%;
+}
+
 header {
     display: flex;
     height: 60px;
@@ -478,4 +541,81 @@ button.icon-btn > img {
 
 button.icon-btn:hover {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.login-page {
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #f0f0f0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-page > div {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 4px;
+
+    width: 25rem;
+
+    box-shadow: 0px 2px 4px #aaa;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.login-page > div form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.login-page img {
+    width: 140px;
+    height: 100px;
+
+    align-self: center;
+    margin-bottom: 20px;
+
+    object-fit: cover;
+}
+
+form input, select {
+    border: 1px solid #aaa;
+
+    border-radius: 5px;
+
+    padding: 0 5px;
+    height: 2rem;
+
+    font-size: 14px;
+}
+
+.login-page form input {
+    height: 2.5rem;
+}
+
+form input:focus, select:focus {
+    outline: none;
+    border: 2px solid #3475c1;
+}
+
+form button {
+    border-radius: 5px;
+    background-color: #3475c1;
+    color: #fff;
+
+    font-weight: 500;
+    font-size: 1rem;
+
+    transition: 200ms;
+
+    cursor: pointer;
+}
+
+.login-page form button {
+    height: 2.5rem;
 }

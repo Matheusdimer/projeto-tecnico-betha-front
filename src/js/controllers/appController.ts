@@ -7,7 +7,7 @@ AppController.$inject = [
     authServiceName
 ]
 
-export function AppController($location, authAPI) {
+export function AppController(this: any, $location, authAPI) {
     const vm = this;
 
     vm.token = localStorage.getItem("session_token");

@@ -1,8 +1,11 @@
-import angular from 'angular';
+AuthService.$inject = [
+    '$http',
+    'config'
+]
 
 export const authServiceName = 'authAPI'
 
-export function AuthService($http, config) {
+export function AuthService(this: any, $http, config) {
     this.login = (user) => {
         return $http.post(config.apiUrl + "/login", user, {
             hearders: {

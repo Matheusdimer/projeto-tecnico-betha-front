@@ -3,6 +3,8 @@ import appHtml from '../../view/app.html'
 import { loginControllerName } from '../controllers/loginController';
 import { appControllerName } from '../controllers/appController';
 
+RouteConfig.$inject = ['$routeProvider', '$locationProvider']
+
 export function RouteConfig($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
 

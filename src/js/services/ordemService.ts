@@ -1,8 +1,11 @@
-import angular from 'angular';
+OrdemService.$inject = [
+    '$http',
+    'config'
+]
 
 export const ordemServiceName = 'ordemService'
 
-export function OrdemService($http, config) {
+export function OrdemService(this: any, $http, config) {
     this.findAll = () => {
         return $http.get(config.apiUrl + "/ordens");
     }
