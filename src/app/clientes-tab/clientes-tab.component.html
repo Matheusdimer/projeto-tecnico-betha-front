@@ -1,0 +1,117 @@
+<div>
+  <div class="tab-header">
+    <div class="inline-itens">
+      <h2>Clientes</h2>
+      <button (click)="loadData()" class="icon-btn">
+        <img src="http://localhost:9000/assets/refresh.svg" alt="Atualizar" />
+      </button>
+    </div>
+    <div class="inline-itens">
+      <button (click)="adicionarCliente()">Adicionar</button>
+      <input type="text" placeholder="Pesquisa" [(ngModel)]="search" name="search" />
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Tipo</th>
+        <th>CPF/CNPJ</th>
+        <th>Telefones</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let cliente of clientes" (click)="editarCliente(cliente)">
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>{{ cliente.tipoCliente }}</td>
+        <td>{{ cliente.cpf_cnpj }}</td>
+        <td>{{ cliente.telefones.join(", ") }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mask" *ngIf="showDetails">
+    <form #clienteForm="ngForm">
+      <div id="cliente-details">
+        <h3>Cliente</h3>
+        <form>
+          <input type="text" placeholder="Nome" [(ngModel)]="cliente.nome" name="nome" />
+
+          <div>
+            <input type="text" placeholder="E-mail" [(ngModel)]="cliente.email" name="email" />
+            <select
+              [(ngModel)]="cliente.tipoCliente"
+              name="tipoCliente"
+            >
+              <option *ngFor="let tipo of tipoClientes" [value]="tipo.value">{{tipo.value}}</option>
+            </select>
+
+            <input
+              type="text"
+              placeholder="CPF/CNPJ"
+              name="cpf_cnpj"
+              [(ngModel)]="cliente.cpf_cnpj"
+            />
+          </div>
+          <p>Telefones</p>
+          <div ng-repeat="telefone in cliente.telefones">
+            <input
+              class="phone"
+              type="tel"
+              placeholder="Telefone"
+              name="telefone"
+              [(ngModel)]="cliente.telefones[$index]"
+            />
+          </div>
+
+          <p>Endereco</p>
+          <div>
+            <input
+              type="text"
+              placeholder="Endereço"
+              name="endereco"
+              [(ngModel)]="cliente.endereco"
+            />
+            <input type="text" placeholder="Número" [(ngModel)]="cliente.numero" name="numero" />
+            <input type="text" placeholder="Bairro" [(ngModel)]="cliente.bairro" name="bairro" />
+          </div>
+          <div>
+            <input type="text" placeholder="CEP" [(ngModel)]="cliente.cep" name="cep" />
+            <input
+              type="text"
+              placeholder="Complemento"
+              [(ngModel)]="cliente.complemento"
+              name="complemento"
+            />
+            <select
+              [(ngModel)]="cliente.estado"
+              ng-options="estado.id as estado.sigla for estado in estados"
+              ng-change="loadCidades()"
+              name="estado"
+            >
+              <option *ngFor="let estado of estados" [value]="estado.id">{{estado.sigla}}</option>
+            </select>
+            <select
+              [(ngModel)]="cliente.cidadeId"
+              name="cidade"
+            >
+              <option *ngFor="let cidade of cidades" [value]="cidade.id">{{cidade.nome}}</option>
+            </select>
+          </div>
+        </form>
+        <div class="btn-container">
+          <button (click)="cancel()">Fechar</button>
+          <button (click)="salvarCliente(cliente)" class="save-btn">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

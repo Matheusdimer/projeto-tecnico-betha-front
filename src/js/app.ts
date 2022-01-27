@@ -1,4 +1,6 @@
+import { downgradeComponent } from "@angular/upgrade/static";
 import angular from "angular";
+import { ClientesTabComponent } from "../app/clientes-tab/clientes-tab.component";
 import { HttpInterceptorsConfig } from "./config/interceptorsConfig";
 import { RouteConfig } from "./config/routeConfig";
 import { AppController, appControllerName } from "./controllers/appController";
@@ -37,7 +39,7 @@ angular
   .controller(clienteControllerName, ClienteController)
   .controller(loginControllerName, LoginController)
   .controller(ordemControllerName, OrdemController)
-  .directive(clientesDirectiveName, ClientesDirective)
+  .directive(clientesDirectiveName, downgradeComponent({ component: ClientesTabComponent }))
   .directive(ordemDirectiveName, OrdemDirective)
   .config(HttpInterceptorsConfig)
   .config(RouteConfig)
@@ -94,3 +96,5 @@ function LoadingInterceptor ($q, $rootScope) {
       },
     };
   }
+
+  export const API_URL = 'https://manutencao-projeto-betha.herokuapp.com'
